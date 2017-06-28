@@ -3,9 +3,9 @@
  * @author 陈海城
  */
 
-/**
- * html 渲染模板
- */
+
+/*************** html 渲染模板 ******************/
+
 const TEMPLATE = {
     waybill: {
         comm: `<div id="waybill">
@@ -44,12 +44,8 @@ const TEMPLATE = {
                                 <button>设置起点</button>
                             </div>
                             <div class="waybill-item-content">
-                                <div>
-                                    起点：
-                                </div>
-                                <div>
-                                    广东省深圳市光明区九号73133331
-                                </div>
+                                <div>起点：</div>
+                                <div>{{origin}}</div>
                             </div>
                         </div>
 
@@ -58,49 +54,37 @@ const TEMPLATE = {
                                 <button>设置终点</button>
                             </div>
                             <div class="waybill-item-content">
-                                <div>
-                                    终点：
-                                </div>
-                                <div>
-                                    广东省深圳市光明区九号73133331
-                                </div>
+                                <div>终点：</div>
+                                <div>{{terminal}}</div>
                             </div>
                         </div>
 
                         <div class="waybill-item waybill-border">
                             <div class="waybill-item-content">
-                                <div>
-                                    出发时间：
-                                </div>
-                                <div>
-                                    <input id="starttime" />
-                                </div>
+                                <div>出发时间：</div>
+                                <div><input id="starttime" /></div>
                             </div>
                             <div class="waybill-item-content">
-                                <div>
-                                    到达时间：
-                                </div>
-                                <div>
-                                    <input id="endtime" />
-                                </div>
+                                <div>到达时间：</div>
+                                <div><input id="endtime" /></div>
                             </div>
                         </div>
 
                         <div class="waybill-item">
                             <div class="waybill-btn waybill-btn-sure">
-                                <button>确定</button>
+                                <button onclick="waybillMakeSure()">确定</button>
                             </div>
                             <div class="waybill-btn waybill-btn-cancel">
-                                <button>取消</button>
+                                <button onclick="waybillCancel()">取消</button>
                             </div>
                         </div>
                     </div>
                 </div>`
 }
 
-/**
- * 工具函数
- */
+
+/*************** 工具模块 *********************/
+
 const utils = (function() {
     /**
      * 获取模板
@@ -133,29 +117,44 @@ const utils = (function() {
         template.appendTo('.aside');
     };
     /**
-     * 清楚侧边栏内的填充内容
+     * 清除侧边栏内的填充内容
      */
     var clear = function() {
         $('.aside').empty()
-    }
+    };
+    /**
+     * $.ajax 请求函数
+     * @param {String}   type    请求方式
+     * @param {String}   url     请求URL
+     * @param {Function} success 请求成功后的回调函数
+     * @param {Object}   data    向后台发送的数据 
+     */
+    var httpRequest = function({ type, url, success, data }) {
+        // TODO
+        $.ajax({ type, url, success, data, dataType: 'json' })
+    };
     return {
         getTemplate,
         replace,
         load,
-        clear
+        clear,
+        httpRequest
     }
 })();
 
+
+/***************  响应函数 *****************/
+
 /**
- * 事件响应函数
+ * 生成‘下运单’页面
  */
 function makeWaybill() {
     utils.clear();
-    createMakeWaybillPage();
+    utils.load($(utils.getTemplate('makeWaybill')));
 }
 
 /**
- * 生成运单页面
+ * 生成‘运单’页面
  * @param {Array} list
  *   格式说明：[{
  *      origin: ,
@@ -173,27 +172,42 @@ function createWaybillListPage(list) {
     utils.load(root);
 }
 
-function createMakeWaybillPage() {
-    utils.load($(utils.getTemplate('makeWaybill')));
+/**
+ * 点击‘运单’后跳转到‘运单’页面
+ */
+function goToWaybill() {
+    utils.clear();
+    // 测试
+    createWaybillListPage([{
+        origin: '广东省深圳市光明区九号73133331',
+        terminal: '广东省深圳市光明区九号73133331',
+        starttime: '2017.4.25 12:00',
+        endtime: '2017.4.25 12:00'
+    }, {
+        origin: '广东省深圳市光明区九号73133331',
+        terminal: '广东省深圳市光明区九号73133331',
+        starttime: '2017.4.25 12:00',
+        endtime: '2017.4.25 12:00'
+    }, {
+        origin: '广东省深圳市光明区九号73133331',
+        terminal: '广东省深圳市光明区九号73133331',
+        starttime: '2017.4.25 12:00',
+        endtime: '2017.4.25 12:00'
+    }])
 }
 
+/**
+ * 点击创建运单响应函数
+ */
+function waybillMakeSure() {
+    // TODO
+    console.log('make sure');
+}
 
 /**
- * 测试
+ * 点击取消创建订单响应函数
  */
-createWaybillListPage([{
-    origin: '广东省深圳市光明区九号73133331',
-    terminal: '广东省深圳市光明区九号73133331',
-    starttime: '2017.4.25 12:00',
-    endtime: '2017.4.25 12:00'
-}, {
-    origin: '广东省深圳市光明区九号73133331',
-    terminal: '广东省深圳市光明区九号73133331',
-    starttime: '2017.4.25 12:00',
-    endtime: '2017.4.25 12:00'
-}, {
-    origin: '广东省深圳市光明区九号73133331',
-    terminal: '广东省深圳市光明区九号73133331',
-    starttime: '2017.4.25 12:00',
-    endtime: '2017.4.25 12:00'
-}])
+function waybillCancel() {
+    // TODO
+    console.log('cancel');
+}
