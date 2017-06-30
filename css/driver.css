@@ -77,3 +77,52 @@
 .driver-btn-cancel>button {
     width: 50%;
 }
+
+.driver-pop-ups-content {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+}
+
+.driver-pop-ups-content>div:not(.driver-pop-ups-btns) {
+    width: 78%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.driver-pop-ups-content>div>div {
+    display: inline-block;
+}
+
+.driver-pop-ups-label {
+    width: 25%;
+}
+
+.driver-pop-ups-input {
+    flex: 1;
+}
+
+.driver-pop-ups-input>input {
+    width: 100%;
+}
+
+.driver-pop-ups-btns {
+    position: relative;
+    width: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.driver-pop-ups-btns>button {
+    position: relative;
+    width: 40%;
+    margin: 0 5px;
+    font-size: 16px;
+    flex: 1;
+}

@@ -71,7 +71,27 @@ const DRIVERTEMPLATE = {
                         <div>{{endtime}}</div>
                     </div>
                </div>`
-    }
+    },
+    modifyDriver: `<div id="driver-pop-up">
+                    <div id="mask" class="mask"></div>
+                    <div id="popUps" class="pop-ups">
+                            <h4 class="pop-ups-title">修改驾驶员</h4>
+                            <div class="driver-pop-ups-content">
+                                <div>
+                                    <div class="driver-pop-ups-label">姓名</div>
+                                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-name" /></div>
+                                </div>
+                                <div>
+                                    <div class="driver-pop-ups-label">其它信息</div>
+                                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-other-info" /></div>
+                                </div>
+                                <div class="driver-pop-ups-btns">
+                                    <button onclick="modifyDriverMakeSure()">确定</button>
+                                    <button onclick="modifyDriverCancel()">取消</button>
+                                </div>
+                            </div>
+                    </div>
+                   </div>`
 }
 
 
@@ -214,8 +234,29 @@ function modifyWayBill(waybill_id) {
 function modifyDriver(waybill_id) {
     // TODO
     console.log('修改驾驶员信息页面');
+    let template = utils.getTemplate('modifyDriver');
+    $(template).appendTo('body');
 }
 
+/**
+ * 确定修改驾驶员信息
+ */
+function modifyDriverMakeSure() {
+    let name = $('#driver-pop-ups-name').val();
+    let othInfo = $('#driver-pop-ups-other-info').val();
+    console.log(name, othInfo);
+    // TODO 对输入信息进行处理
+    // 去除蒙版
+    $('#driver-pop-up').remove();
+}
+
+/**
+ * 取消修改驾驶员信息
+ */
+function modifyDriverCancel() {
+    // 去除蒙版
+    $('#driver-pop-up').remove();
+}
 
 /********************** ‘驾驶员’页面初始化函数 *********************/
 

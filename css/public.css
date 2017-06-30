@@ -1,9 +1,17 @@
-html, body {
+html,
+body {
     width: 100%;
-    height: 100%
+    height: 100%;
 }
 
-html, body, h1, h2, h3, h4, h5, h6 {
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
     padding: 0;
 }
@@ -20,17 +28,23 @@ a {
     text-decoration: none;
 }
 
+
 /*向右浮动*/
+
 .fr {
     float: right;
 }
 
+
 /*向左浮动*/
+
 .fl {
     float: left;
 }
 
+
 /*清除浮动样式*/
+
 .clear-f {
     zoom: 1;
 }
@@ -46,9 +60,7 @@ a {
 .nav {
     width: 100%;
     height: 80px;
-
     font-size: 16px;
-
     color: #FFF;
     background-color: #2C3E50;
 }
@@ -57,17 +69,17 @@ a {
     color: #FFF;
 }
 
-.nav li, .nav i, .nav input{
+.nav li,
+.nav i,
+.nav input {
     opacity: 0.5;
 }
 
 .logo {
     width: 40%;
-
     font-size: 25px;
     line-height: 80px;
     text-align: center;
-
     cursor: pointer;
 }
 
@@ -76,7 +88,6 @@ a {
     padding: 0;
     width: 55%;
     height: 100%;
-
     text-align: center;
     line-height: 80px;
 }
@@ -85,34 +96,41 @@ a {
     width: 14.28%;
 }
 
-.nav li:hover, .nav i:hover, .nav input:hover {
+.nav li:hover,
+.nav i:hover,
+.nav input:hover {
     opacity: 1.0;
     cursor: pointer;
 }
 
+
 /*导航栏被选中样式*/
+
 .hover {
     opacity: 1.0 !important;
 }
 
+
 /*隐藏导航栏元素样式*/
+
 .hide {
     display: none;
 }
 
-.hover, .nav li:hover {
+.hover,
+.nav li:hover {
     font-size: 20px;
 }
 
 .search {
     width: 30%;
     height: 100%;
-
     text-align: center;
     line-height: 80px;
 }
 
-.search input, .search i {
+.search input,
+.search i {
     font-size: 16px;
 }
 
@@ -123,16 +141,13 @@ a {
     border-bottom: 1px solid gray;
     border-left: 0;
     padding: 0 5px;
-
     color: #FFF;
     background-color: #2C3E50;
-
     outline: none;
 }
 
 .container {
     overflow: auto;
-
     position: relative;
 }
 
@@ -140,10 +155,8 @@ a {
     position: absolute;
     top: 0;
     right: 0;
-
     width: 300px;
     height: 100%;
-
     background-color: #34495E;
 }
 
@@ -160,17 +173,14 @@ a {
     margin: 0;
     padding: 0;
     height: 500px;
-
     background-color: #F2F2F2;
 }
 
 .main-info li {
     overflow: hidden;
-
     padding: 20px;
     width: 50%;
     height: 100%;
-
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -185,10 +195,8 @@ a {
     top: 0;
     left: 0;
     z-index: 9;
-
     width: 100%;
     height: 100%;
-
     background-color: #000;
     opacity: 0.5;
 }
@@ -198,13 +206,10 @@ a {
     top: 50%;
     left: 50%;
     z-index: 99;
-
     width: 400px;
     /*height: 400px;*/
-
     background-color: #000;
     opacity: 0.9;
-
     transform: translate(-50%, -50%);
 }
 
@@ -212,26 +217,21 @@ a {
     margin: 15px 20px;
     border-bottom: 1px solid #fff;
     height: 30px;
-
     font-size: 20px;
     line-height: 30px;
     text-align: center;
-
     color: #fff;
 }
 
 .main-info-title {
     margin-bottom: 10px;
     height: 30px;
-
     line-height: 30px;
-
     color: #333;
 }
 
 .main-info-title i {
     margin: 5px 20px 0 0;
-
     font-size: 20px;
 }
 
@@ -241,7 +241,6 @@ a {
 
 .main-info-table {
     width: 70%;
-
     font-size: 16px;
 }
 
