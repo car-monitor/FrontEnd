@@ -1,5 +1,6 @@
 html, body {
     width: 100%;
+    height: 100%
 }
 
 html, body, h1, h2, h3, h4, h5, h6 {
@@ -19,14 +20,17 @@ a {
     text-decoration: none;
 }
 
+/*向右浮动*/
 .fr {
     float: right;
 }
 
+/*向左浮动*/
 .fl {
     float: left;
 }
 
+/*清除浮动样式*/
 .clear-f {
     zoom: 1;
 }
@@ -58,7 +62,7 @@ a {
 }
 
 .logo {
-    width: 30%;
+    width: 40%;
 
     font-size: 25px;
     line-height: 80px;
@@ -70,7 +74,7 @@ a {
 .nav ul {
     margin: 0;
     padding: 0;
-    width: 40%;
+    width: 55%;
     height: 100%;
 
     text-align: center;
@@ -78,7 +82,7 @@ a {
 }
 
 .nav ul li {
-    width: 16.6%;
+    width: 14.28%;
 }
 
 .nav li:hover, .nav i:hover, .nav input:hover {
@@ -86,8 +90,14 @@ a {
     cursor: pointer;
 }
 
+/*导航栏被选中样式*/
 .hover {
     opacity: 1.0 !important;
+}
+
+/*隐藏导航栏元素样式*/
+.hide {
+    display: none;
 }
 
 .hover, .nav li:hover {
@@ -141,7 +151,7 @@ a {
     margin-right: 300px;
 }
 
-.main-body iframe {
+.map {
     width: 100%;
     height: 500px;
 }
@@ -154,7 +164,7 @@ a {
 
 .main-info li {
     width: 50%;
-    height: 50%;
+    height: 100%;
 
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -162,14 +172,45 @@ a {
 }
 
 .main-info li:first-child {
-    border-bottom: 1px solid #CCC;
     border-right: 1px solid #CCC;
 }
 
-.main-info li:nth-child(2) {
-    border-bottom: 1px solid #CCC;
+.mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #000;
+    opacity: 0.5;
 }
 
-.main-info li:nth-child(3) {
-    border-right: 1px solid #CCC;
+.pop-ups {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
+
+    width: 400px;
+    height: 400px;
+
+    background-color: #000;
+    opacity: 0.9;
+
+    transform: translate(-50%, -50%);
+}
+
+.pop-ups-title {
+    margin: 15px 20px;
+    border-bottom: 1px solid #fff;
+    height: 30px;
+
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+
+    color: #fff;
 }
