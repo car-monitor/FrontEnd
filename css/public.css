@@ -160,9 +160,14 @@ a {
     margin: 0;
     padding: 0;
     height: 500px;
+
+    background-color: #F2F2F2;
 }
 
 .main-info li {
+    overflow: hidden;
+
+    padding: 20px;
     width: 50%;
     height: 100%;
 
@@ -195,7 +200,7 @@ a {
     z-index: 99;
 
     width: 400px;
-    height: 400px;
+    /*height: 400px;*/
 
     background-color: #000;
     opacity: 0.9;
@@ -213,4 +218,41 @@ a {
     text-align: center;
 
     color: #fff;
+}
+
+.main-info-title {
+    margin-bottom: 10px;
+    height: 30px;
+
+    line-height: 30px;
+
+    color: #333;
+}
+
+.main-info-title i {
+    margin: 5px 20px 0 0;
+
+    font-size: 20px;
+}
+
+.main-info-title h3 {
+    font-size: 20px;
+}
+
+.main-info-table {
+    width: 70%;
+
+    font-size: 16px;
+}
+
+.main-info-table td {
+    width: 50%;
+}
+
+.main-info-left-color {
+    color: #666;
+}
+
+.main-info-right-color {
+    color: #333;
 }
