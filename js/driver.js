@@ -87,7 +87,27 @@ const DRIVERTEMPLATE = {
                                 </div>
                                 <div class="driver-pop-ups-btns">
                                     <button onclick="modifyDriverMakeSure()">确定</button>
-                                    <button onclick="modifyDriverCancel()">取消</button>
+                                    <button onclick="driverPopUpCancel()">取消</button>
+                                </div>
+                            </div>
+                    </div>
+                   </div>`,
+    addDriver: `<div id="driver-pop-up">
+                    <div id="mask" class="mask"></div>
+                    <div id="popUps" class="pop-ups">
+                            <h4 class="pop-ups-title">添加驾驶员</h4>
+                            <div class="driver-pop-ups-content">
+                                <div>
+                                    <div class="driver-pop-ups-label">姓名</div>
+                                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-name" /></div>
+                                </div>
+                                <div>
+                                    <div class="driver-pop-ups-label">其它信息</div>
+                                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-other-info" /></div>
+                                </div>
+                                <div class="driver-pop-ups-btns">
+                                    <button onclick="addDriverMakeSure()">确定</button>
+                                    <button onclick="driverPopUpCancel()">取消</button>
                                 </div>
                             </div>
                     </div>
@@ -158,14 +178,6 @@ const utils = (function() {
 
 
 /***************  各种事件响应函数 *****************/
-
-/**
- * 跳转到添加驾驶员页面
- */
-function addDriver() {
-    // TODO
-    console.log('添加驾驶员页面');
-}
 
 /**
  * 生成‘驾驶员列表’页面
@@ -239,6 +251,16 @@ function modifyDriver(waybill_id) {
 }
 
 /**
+ * 跳转到添加驾驶员页面
+ */
+function addDriver() {
+    // TODO
+    console.log('添加驾驶员页面');
+    let template = utils.getTemplate('addDriver');
+    $(template).appendTo('body');
+}
+
+/**
  * 确定修改驾驶员信息
  */
 function modifyDriverMakeSure() {
@@ -247,16 +269,29 @@ function modifyDriverMakeSure() {
     console.log(name, othInfo);
     // TODO 对输入信息进行处理
     // 去除蒙版
-    $('#driver-pop-up').remove();
+    driverPopUpCancel();
 }
 
 /**
- * 取消修改驾驶员信息
+ * 确定添加驾驶员
  */
-function modifyDriverCancel() {
+function addDriverMakeSure() {
+    let name = $('#driver-pop-ups-name').val();
+    let othInfo = $('#driver-pop-ups-other-info').val();
+    console.log(name, othInfo);
+    // TODO 对输入信息进行处理
+    // 去除蒙版
+    driverPopUpCancel();
+}
+
+/**
+ * 取消弹窗
+ */
+function driverPopUpCancel() {
     // 去除蒙版
     $('#driver-pop-up').remove();
 }
+
 
 /********************** ‘驾驶员’页面初始化函数 *********************/
 
