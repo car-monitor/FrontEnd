@@ -86,7 +86,7 @@ const DRIVERTEMPLATE = {
                                     <div class="driver-pop-ups-input"><input id="driver-pop-ups-other-info" /></div>
                                 </div>
                                 <div class="driver-pop-ups-btns">
-                                    <button onclick="modifyDriverMakeSure()">确定</button>
+                                    <button onclick="modifyDriverMakeSure({{driver_id}})">确定</button>
                                     <button onclick="driverPopUpCancel()">取消</button>
                                 </div>
                             </div>
@@ -111,7 +111,22 @@ const DRIVERTEMPLATE = {
                                 </div>
                             </div>
                     </div>
-                   </div>`
+                </div>`,
+    deleteWayBill: `<div id="driver-pop-up">
+                    <div id="mask" class="mask"></div>
+                    <div id="popUps" class="pop-ups">
+                            <h4 class="pop-ups-title">删除运单</h4>
+                            <div class="driver-pop-ups-content">
+                                <p style="text-align: center">
+                                    此操作将不可逆，确定删除订单？
+                                </p>
+                                <div class="driver-pop-ups-btns">
+                                    <button onclick="deleteWayBillMakeSure({{waybill_id}})">确定</button>
+                                    <button onclick="driverPopUpCancel()">取消</button>
+                                </div>
+                            </div>
+                    </div>
+                    </div>`
 }
 
 
@@ -227,7 +242,10 @@ function createDriverDetailPage(driver_id, name, list) {
  */
 function deleteWayBill(waybill_id) {
     // TODO
-    console.log('删除运单页面')
+    console.log('删除运单页面');
+    let template = utils.getTemplate('deleteWayBill');
+    template = utils.replace(template, { waybill_id })
+    $(template).appendTo('body');
 }
 
 /**
@@ -243,10 +261,11 @@ function modifyWayBill(waybill_id) {
  * 跳转修改驾驶员信息
  * @param {Number} driver_id 
  */
-function modifyDriver(waybill_id) {
+function modifyDriver(driver_id) {
     // TODO
     console.log('修改驾驶员信息页面');
     let template = utils.getTemplate('modifyDriver');
+    template = utils.replace(template, { driver_id })
     $(template).appendTo('body');
 }
 
@@ -263,7 +282,7 @@ function addDriver() {
 /**
  * 确定修改驾驶员信息
  */
-function modifyDriverMakeSure() {
+function modifyDriverMakeSure(driver_id) {
     let name = $('#driver-pop-ups-name').val();
     let othInfo = $('#driver-pop-ups-other-info').val();
     console.log(name, othInfo);
@@ -280,6 +299,16 @@ function addDriverMakeSure() {
     let othInfo = $('#driver-pop-ups-other-info').val();
     console.log(name, othInfo);
     // TODO 对输入信息进行处理
+    // 去除蒙版
+    driverPopUpCancel();
+}
+
+/**
+ * 确定删除运单
+ * @param {Number} waybill_id 
+ */
+function deleteWayBillMakeSure(waybill_id) {
+    // TODO
     // 去除蒙版
     driverPopUpCancel();
 }
