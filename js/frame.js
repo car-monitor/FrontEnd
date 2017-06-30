@@ -61,21 +61,21 @@ $(document).ready(function() {
     $('#mask').toggle();
     $('#popUps').toggle();
 
-    $('body').click(function(event) {
-        // 不让body滚动破坏
-        if ($('#mask').css('display') === 'block') {
-            $(this).css({
-                'overflow-x': 'auto',
-                'overflow-y': 'auto'
-            });
-        } else {
-            $(this).css({
-                'overflow-x': 'hidden',
-                'overflow-y': 'hidden'
-            });
-        }
-        // 设置蒙层和弹窗的位置和隐藏属性
-        $('#mask').css('top', $(document).scrollTop()).toggle();
-        $('#popUps').css('top', 0.5 * $('body').height() + $(document).scrollTop()).toggle();
-    });
+    // $('body').click(function(event) {
+    //     // 不让body滚动破坏
+    //     if ($('#mask').css('display') === 'block') {
+    //         $(this).css({
+    //             'overflow-x': 'auto',
+    //             'overflow-y': 'auto'
+    //         });
+    //     } else {
+    //         $(this).css({
+    //             'overflow-x': 'hidden',
+    //             'overflow-y': 'hidden'
+    //         });
+    //     }
+    //     // 设置蒙层和弹窗的位置和隐藏属性
+    //     $('#mask').css('top', $(document).scrollTop()).toggle();
+    //     $('#popUps').css('top', 0.5 * $('body').height() + $(document).scrollTop()).toggle();
+    // });
 });
