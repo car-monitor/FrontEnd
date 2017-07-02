@@ -9,9 +9,9 @@ function createMap() {
 
     // 创建地图
     map = new qq.maps.Map(mapElement, {
-            center: new qq.maps.LatLng(23.06409661136831, 113.38997840881348),
-            zoom: 14
-        });
+        center: new qq.maps.LatLng(23.06409661136831, 113.38997840881348),
+        zoom: 14
+    });
 
     drivingService = new qq.maps.DrivingService({
         map: map
@@ -20,7 +20,7 @@ function createMap() {
     // 绑定点击事件，获取位置信息
     qq.maps.event.addListener(map, 'click', function(event) {
         // alert('您的点击位置为：[' + event.latLng.getLat() + ', ' + event.latLng.getLng() + ']');
-        
+
         if (lastLat && lastLat != event.latLng.getLat()) {
             search(drivingService, new qq.maps.LatLng(lastLat, lastLng), event.latLng);
         }
@@ -32,7 +32,7 @@ function createMap() {
             position: event.latLng,
             map: map
         });
-        
+
         var label = new qq.maps.Label({
             position: event.latLng,
             map: map,
@@ -57,27 +57,27 @@ function search(drivingService, start, end) {
     drivingService.search(start, end);
 }
 
-$(document).ready(function() {
-    $('#mask').toggle();
-    $('#popUps').toggle();
+// $(document).ready(function() {
+//     $('#mask').toggle();
+//     $('#popUps').toggle();
 
-    $('body').click(function(event) {
-        // 不让body滚动破坏
-        // if ($('#mask').css('display') === 'block') {
-        //     $(this).css({
-        //         'overflow-x': 'auto',
-        //         'overflow-y': 'auto'
-        //     });
-        // } else {
-        //     $(this).css({
-        //         'overflow-x': 'hidden',
-        //         'overflow-y': 'hidden'
-        //     });
-        // }
-        // 设置蒙层和弹窗的位置和隐藏属性
-        // $('#mask').css('top', $(document).scrollTop()).toggle();
-        // $('#popUps').css('top', 0.5 * $('body').height() + $(document).scrollTop()).toggle();
-        $('#mask').toggle();
-        $('#popUps').toggle();
-    });
-});
+//     $('body').click(function(event) {
+//         // 不让body滚动破坏
+//         // if ($('#mask').css('display') === 'block') {
+//         //     $(this).css({
+//         //         'overflow-x': 'auto',
+//         //         'overflow-y': 'auto'
+//         //     });
+//         // } else {
+//         //     $(this).css({
+//         //         'overflow-x': 'hidden',
+//         //         'overflow-y': 'hidden'
+//         //     });
+//         // }
+//         // 设置蒙层和弹窗的位置和隐藏属性
+//         // You can't use 'macro parameter character #' in math mode(document).scrollTop()).toggle();
+//         // You can't use 'macro parameter character #' in math mode('body').height() + $(document).scrollTop()).toggle();
+//         $('#mask').toggle();
+//         $('#popUps').toggle();
+//     });
+// });

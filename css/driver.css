@@ -1,0 +1,133 @@
+/**
+ * 运单页面css样式
+ * @author 陈海城
+ */
+
+#driver {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 8%;
+    color: #eff1f2;
+    display: flex;
+    flex-direction: column;
+}
+
+#driver h1 {
+    position: relative;
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.driver-border {
+    border-bottom: 1px solid #808d9a;
+}
+
+#driver-list {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    position: relative;
+}
+
+.driver-item {
+    padding: 4px 0;
+}
+
+.driver-item-title {}
+
+.driver-item-content {
+    display: flex;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 4px;
+}
+
+.driver-item-content>div:nth-child(2) {
+    flex: 1;
+}
+
+.driver-btn {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.driver-btn>button {
+    width: 65%;
+    font-size: 18px;
+}
+
+.driver-btn-sure,
+.driver-btn-cancel {
+    padding: 5px;
+}
+
+.driver-btn-sure {
+    margin-top: 2px;
+}
+
+.driver-btn-sure>button,
+.driver-btn-cancel>button {
+    width: 50%;
+}
+
+.driver-pop-ups-content {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+}
+
+.driver-pop-ups-content>div:not(.driver-pop-ups-btns) {
+    width: 78%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.driver-pop-ups-content>div>div {
+    display: inline-block;
+}
+
+.driver-pop-ups-label {
+    width: 25%;
+}
+
+.driver-pop-ups-input {
+    flex: 1;
+}
+
+.driver-pop-ups-input>input {
+    width: 100%;
+}
+
+.driver-pop-ups-btns {
+    position: relative;
+    width: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.driver-pop-ups-btns>button {
+    position: relative;
+    width: 40%;
+    margin: 0 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+#driver-pop-up {
+    width: 100%;
+    height: auto;
+}
