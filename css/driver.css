@@ -131,3 +131,37 @@
     width: 100%;
     height: auto;
 }
+
+.driver-main-info {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.driver-main-info-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.driver-main-info-body {
+    flex: 1;
+    overflow-y: auto
+}
+
+.driver-main-info-body-item {
+    margin-bottom: 5px;
+}
+
+.driver-main-info-body-item>div {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.driver-main-info-body-item-label {
+    width: 33%;
+    color: rgba(0, 0, 0, 0.7);
+}
