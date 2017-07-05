@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&amp;key=YOUR_KEY&amp;libraries=drawing,geometry,autocomplete,convertor"></script>
+    <script src="../jQuery/jquery-3.1.0.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- a标签href属性请填实时的页面 -->
+        <h1 class="fl logo"><a href="/realtime.html">基于云平台的车辆监控系统</a></h1>
+        <ul class="fr">
+            <li class="fl"><a href="/real_time.html">实时</a></li>
+            <li class="fl"><a href="/car.html">车辆</a></li>
+            <li class="fl"><a href="/driver.html">驾驶员</a></li>
+            <li class="fl"><a href="/waybill.html">运单</a></li>
+            <li class="fl"><a href="/user_management.html">用户管理</a></li>
+            <li class="fl"><a href="/history_search.html">历史检索</a></li>
+            <!-- 如果已经登录，可将下行代码换成其下一行代码，记住填id -->
+            <li class="fl"><a href="/login.html">登录</a></li>
+            <!-- <li class="fl"><a href="/user?id=">用户名</a></li> -->
+        </ul>
+    </div>
+ 
+
+    <div id="mask" class="mask"></div>
+    <div id="login-window">
+        <div id="mask" class="mask"></div>
+                    <div id="popUps" class="pop-ups">
+                            <h4 class="pop-ups-title">登录</h4>
+                            <div class="login-content">
+                                <div>
+                                    <div class="login-label"> 用户名</div>
+                                    <div class="login-input"><input id="login-user" /></div>
+                                </div>
+                                <div>
+                                    <div class="login-label"> 密码</div>
+                                    <div class="login-input"><input id="login-password" /></div>
+                                </div>
+                                <div class="login-btns">
+                                    <button onclick="loginSure()">确定</button>
+                                    <button onclick="loginCancel()">取消</button>
+                                </div>
+                            </div>
+                    </div>  
+    </div>
+    
+    <script src="../js/frame.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+
+</html>
