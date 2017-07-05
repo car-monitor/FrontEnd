@@ -1,0 +1,58 @@
+/**
+ * login¥Ò³ÃæcssÑùÊ½
+ * @author LCK
+ */
+
+.login-content {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-content>div:not(.driver-pop-ups-btns) {
+    width: 78%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.login-content>div>div {
+    display: inline-block;
+}
+
+.login-label {
+    width: 25%;
+}
+
+.login-input {
+    flex: 1;
+}
+
+.login-input>input {
+    width: 100%;
+}
+
+.login-btns {
+    position: relative;
+    width: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-btns>button {
+    position: relative;
+    width: 40%;
+    margin: 0 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+#login {
+    width: 100%;
+    height: auto;
+}

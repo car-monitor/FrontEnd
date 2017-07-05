@@ -1,0 +1,133 @@
+/**
+ * 管理页面css样式
+ * @author LCK
+ */
+
+#user {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 8%;
+    color: #eff1f2;
+    display: flex;
+    flex-direction: column;
+}
+
+#user h1 {
+    position: relative;
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.user-border {
+    border-bottom: 1px solid #808d9a;
+}
+
+#user-list {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    position: relative;
+}
+
+.user-item {
+    padding: 4px 0;
+}
+
+.user-item-title {}
+
+.user-item-content {
+    display: flex;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 4px;
+}
+
+.user-item-content>div:nth-child(2) {
+    flex: 1;
+}
+
+.user-btn {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.user-btn>button {
+    width: 65%;
+    font-size: 18px;
+}
+
+.user-btn-sure,
+.user-btn-cancel {
+    padding: 5px;
+}
+
+.user-btn-sure {
+    margin-top: 2px;
+}
+
+.user-btn-sure>button,
+.user-btn-cancel>button {
+    width: 50%;
+}
+
+.user-pop-ups-content {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+}
+
+.user-pop-ups-content>div:not(.user-pop-ups-btns) {
+    width: 78%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.user-pop-ups-content>div>div {
+    display: inline-block;
+}
+
+.user-pop-ups-label {
+    width: 25%;
+}
+
+.user-pop-ups-input {
+    flex: 1;
+}
+
+.user-pop-ups-input>input {
+    width: 100%;
+}
+
+.user-pop-ups-btns {
+    position: relative;
+    width: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.user-pop-ups-btns>button {
+    position: relative;
+    width: 40%;
+    margin: 0 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+#user-pop-up {
+    width: 100%;
+    height: auto;
+}
