@@ -42,3 +42,32 @@
     margin-bottom: 4px;
 }
 
+#addCarBox {
+	color: white;
+	opacity: 1;
+	display: none;
+}
+
+#addCarBox label {
+	padding-left: 40px;
+	display: inline-block;
+	width: 100px;
+}
+
+#addCarBox h3 {
+	padding-bottom: 10px;
+}
+
+.addCarBox-item {
+	width: 200px;
+	margin: 5px;
+}
+
+.addCarBox-button {
+	width: 80px;
+	margin-left: 80px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	background-color: white;
+}

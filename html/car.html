@@ -34,7 +34,7 @@
         <div class="aside">
             <div id="car">
                 <h1 id="car-title" class="car-border">
-                    车辆列表<i class="fa fa-plus" aria-hidden="true" style="float: right; cursor: pointer"></i>
+                    车辆列表<i id="addCarPlus" class="fa fa-plus" aria-hidden="true" style="float: right; cursor: pointer"></i>
                 </h1>
 
                 <div id="car-list">
@@ -85,7 +85,20 @@
                 <li class="fl"></li>
             </ul>
         </div>
+    </div>  
+
+    <div id="addCarBox" class="pop-ups">
+        <h3 class="pop-ups-title">添加车辆</h3>
+        <form mothod="post">
+            <label>车牌号</label><input class="addCarBox-item" id="carNumber" name="car-number" type="text" /><br />
+            <label>车辆类型</label><input class="addCarBox-item" id="carType" name="car-type" type="text" /><br />
+            <label>初始里程数</label><input class="addCarBox-item" id="carKM" name="car-KM" type="text" /><br />
+            <input class="addCarBox-button" id="submitButton" type="submit" value="确定"/>
+            <input class="addCarBox-button" id="cancelButton" type="button" value="取消"/>
+        </form>
     </div>
+
+    <script src="../js/car_1.js"></script>
 </body>
 
 </html>
