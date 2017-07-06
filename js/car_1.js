@@ -9,7 +9,7 @@ const CARTEMPLATE = {
                 <div id="car-list">
                 </div>
             </div>`,
-        item: `<div class="car-item car-border">
+        item: `<div class="at-car-page car-item car-border">
                     <h1 class="car-item-title">
                         <i class="fa fa-car" aria-hidden="true"></i>
                         <span style="cursor: pointer">{{carPlate}}</span>
@@ -29,6 +29,39 @@ const CARTEMPLATE = {
                         <div>购买时间：{{buyTime}}</div>
                     </div>
                 </div>`
+    },
+    carDetail: {
+        head: `<div id="car">
+                    <h1 id="car-title" class="car-border">
+                        <i class="fa fa-car" aria-hidden="true"></i>
+                        {{carPlate}}
+                        <i class="fa fa-trash-o" aria-hidden="true" style="float: right; cursor: pointer"></i>
+                        <i class="fa fa-cog" aria-hidden="true" style="float: right; cursor: pointer; padding-right: 5px"></i>
+                    </h1>
+                    <div id="car-list">
+                        
+                    </div>
+                </div>`,
+        item: `<div class="at-detail-page car-item car-border">
+                    <h1 class="car-item-title">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        运单
+                        <i class="fa fa-trash-o" aria-hidden="true" style="float: right; cursor: pointer"></i>
+                        <i class="fa fa-cog" aria-hidden="true" style="float: right; cursor: pointer; padding-right: 5px"></i>
+                    </h1>
+                    <div class="car-item-content">
+                        <div>起点：{{origin}}</div>
+                    </div>
+                    <div class="car-item-content">
+                        <div>终点：{{terminal}}</div>
+                    </div>
+                    <div class="car-item-content">
+                        <div>出发时间：{{starttime}}</div>
+                    </div>
+                    <div class="car-item-content">
+                        <div>结束时间：{{endtime}}</div>
+                    </div>
+               </div>`
     }
 }
 
@@ -113,6 +146,7 @@ function createCarListPage(list) {
     utils.load(root);
 }
 
+
 /**
  * ‘车辆列表’页面初始化函数
  */
@@ -158,35 +192,52 @@ function goToCar() {
     }]);
 }
 
+/**
+ * 生成‘车辆详细信息’页面
+ * @param {String} carPlate  车牌号
+ * @param {Array}  list      该车的相关运单列表
+ *   格式说明：[{
+ *      waybill_id:,
+ *      origin:,
+ *      terminal:,
+ *      starttime:,
+ *      endtime:
+ *   }]
+ */
+function createCarDetailPage(carId, carPlate, list) {
+    let root = $(utils.replace(utils.getTemplate('carDetail.head'), {carPlate}));
+    list.forEach(item => {
+        let template = utils.getTemplate('carDetail.item');
+        $(utils.replace(template, item)).appendTo(root.children('#car-list'));
+    });
+    utils.load(root);
+    //load后给元素添加事件
+    setCarFunOn();
+    deleteCarFunOn();
+    deleteOrderFunOn();
+}
 
-$(function ($) {
-	goToCar();
+/**
+ * ‘车辆详情页’页面初始化函数
+ */
+function goToCarDetail(carId, carPlate) {
+    utils.clear();
+    //从datajs获取假数据
+    createCarDetailPage(carId, carPlate,
+    	[{
+            waybill_id: 1,
+            origin: dataOrder[0].addressorAddress,
+            terminal: dataOrder[0].addresseeAddress,
+            starttime: dataOrder[0].startTime,
+            endtime: dataOrder[0].endTime
+        }]
+    );
+}
 
-	//点击添加加号 弹出添加车辆窗口
-	$("#addCarPlus").on("click", function() {
-		//添加mask背景
-		$("body").append("<div id='mask'></div>");
-		$("#mask").addClass("mask").fadeIn("slow");
-		//弹出添加车辆弹窗，并将input的值清空.
-		$("#addCarBox").fadeIn("slow");
-		$(".addCarBox-item").val();
-	});
-
-	//取消添加车辆
-	$("#addCarBox-cancelButton").on("click", function() {
-		//添加车辆窗口弹出
-		$("#addCarBox").fadeOut("fast");
-		$("#mask").css({ display: 'none' });
-		$("#mask").remove();
-	})
-
-	//添加车辆提交
-	$("#addCarBox-submitButton").on("click", function(e) {
-		e.preventDefault();
-	});
-
-	//点击添加车辆设置按钮 弹出添加车辆窗口
-	$(".car-item .fa-cog").on("click", function() {
+//给设置修改车辆按钮添加监听事件
+function setCarFunOn() {
+	//点击车辆设置按钮 弹出添加车辆窗口
+	$(".at-car-page .fa-cog, #car-title .fa-cog").on("click", function() {
 		//添加mask背景
 		$("body").append("<div id='mask'></div>");
 		$("#mask").addClass("mask").fadeIn("slow");
@@ -205,9 +256,12 @@ $(function ($) {
 	$("#setCarBox-submitButton").on("click", function(e) {
 		e.preventDefault();
 	});
+}
 
+//给删除车辆按钮添加监听事件
+function deleteCarFunOn() {
 	//点击删除车辆按钮 弹出删除车辆窗口
-	$(".car-item .fa-trash-o").on("click", function() {
+	$(".at-car-page .fa-trash-o, #car-title .fa-trash-o").on("click", function() {
 		//添加mask背景
 		$("body").append("<div id='mask'></div>");
 		$("#mask").addClass("mask").fadeIn("slow");
@@ -224,5 +278,71 @@ $(function ($) {
 	//确定删除车辆
 	$("#deleteCarBox-submitButton").on("click", function(e) {
 		e.preventDefault();
+	});
+}
+
+//给添加车辆按钮添加监听事件
+function addCarFunOn() {
+	//点击添加加号 弹出添加车辆窗口
+	$("#addCarPlus").on("click", function() {
+		//添加mask背景
+		$("body").append("<div id='mask'></div>");
+		$("#mask").addClass("mask").fadeIn("slow");
+		//弹出添加车辆弹窗，并将input的值清空.
+		$("#addCarBox").fadeIn("slow");
+		$(".addCarBox-item").val();
+	});
+
+	//取消添加车辆
+	$("#addCarBox-cancelButton").on("click", function() {
+		//添加车辆窗口弹出
+		$("#addCarBox").fadeOut("fast");
+		$("#mask").css({ display: 'none' });
+		$("#mask").remove();
+	})
+	//添加车辆提交
+	$("#addCarBox-submitButton").on("click", function(e) {
+		e.preventDefault();
+	});
+}
+
+//给删除运单添加监听事件
+function deleteOrderFunOn() {
+	//点击删除车辆按钮 弹出删除车辆窗口
+	$(".at-detail-page .fa-trash-o").on("click", function() {
+		//添加mask背景
+		$("body").append("<div id='mask'></div>");
+		$("#mask").addClass("mask").fadeIn("slow");
+		$("#deleteOrderBox").fadeIn("slow");
+	});
+
+	//取消删除车辆
+	$("#deleteOrderBox-cancelButton").on("click", function() {
+		$("#deleteOrderBox").fadeOut("fast");
+		$("#mask").css({ display: 'none' });
+		$("#mask").remove();
+	})
+
+	//确定删除车辆
+	$("#deleteOrderBox-submitButton").on("click", function(e) {
+		e.preventDefault();
+	});
+}
+
+$(function ($) {
+	goToCar();
+	addCarFunOn();
+	setCarFunOn();
+	deleteCarFunOn();
+
+	//点击车辆 显示车辆详情
+	$(".car-item-title span").on("click", function() {
+		var temp_carPlate = $(this).text();
+
+		//通过temp_carPlate车辆号查找id
+		var carId_ = 1;
+		//getCarIdByCarPlate(CarPlate);
+
+		goToCarDetail(carId_, temp_carPlate);
 	});
 });
