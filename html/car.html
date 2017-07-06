@@ -32,49 +32,6 @@
 
     <div class="container">
         <div class="aside">
-            <div id="car">
-                <h1 id="car-title" class="car-border">
-                    车辆列表<i id="addCarPlus" class="fa fa-plus" aria-hidden="true" style="float: right; cursor: pointer"></i>
-                </h1>
-
-                <div id="car-list">
-                    <div class="car-item car-border">
-                        <h1 class="car-item-title">
-                            <i class="fa fa-car" aria-hidden="true"></i>
-                            <span style="cursor: pointer">{{CarName}}</span>
-                            <i class="fa fa-trash-o" aria-hidden="true" style="float: right; cursor: pointer"></i>
-                            <i class="fa fa-cog" aria-hidden="true" style="float: right; cursor: pointer; padding-right: 5px"></i>
-                        </h1>
-                        <div class="car-item-content">
-                            <div>总里程：{{totalKM}}</div>
-                        </div>
-                        <div class="car-item-content">
-                            <div>车辆类型：{{carType}}</div>
-                        </div>
-                        <div class="car-item-content">
-                            <div>是否可用：{{jadgeUse}}</div>
-                        </div>
-                    </div>
-
-                    <div class="car-item car-border">
-                        <h1 class="car-item-title">
-                            <i class="fa fa-car" aria-hidden="true"></i>
-                            <span style="cursor: pointer">{{CarName}}</span>
-                            <i class="fa fa-trash-o" aria-hidden="true" style="float: right; cursor: pointer"></i>
-                            <i class="fa fa-cog" aria-hidden="true" style="float: right; cursor: pointer; padding-right: 5px"></i>
-                        </h1>
-                        <div class="car-item-content">
-                            <div>总里程：{{totalKM}}</div>
-                        </div>
-                        <div class="car-item-content">
-                            <div>车辆类型：{{carType}}</div>
-                        </div>
-                        <div class="car-item-content">
-                            <div>是否可用：{{jadgeUse}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="main-body">
             <div id="map" class="map"></div>
@@ -87,18 +44,54 @@
         </div>
     </div>  
 
+    <!-- 添加车辆的弹出窗口 -->
     <div id="addCarBox" class="pop-ups">
         <h3 class="pop-ups-title">添加车辆</h3>
         <form mothod="post">
-            <label>车牌号</label><input class="addCarBox-item" id="carNumber" name="car-number" type="text" /><br />
-            <label>车辆类型</label><input class="addCarBox-item" id="carType" name="car-type" type="text" /><br />
-            <label>初始里程数</label><input class="addCarBox-item" id="carKM" name="car-KM" type="text" /><br />
-            <input class="addCarBox-button" id="submitButton" type="submit" value="确定"/>
-            <input class="addCarBox-button" id="cancelButton" type="button" value="取消"/>
+            <label>车牌号</label><input class="addCarBox-item" id="addCarBox-carNumber" name="car-number" type="text" /><br />
+            <label>车辆类型</label><input class="addCarBox-item" id="addCarBox-carType" name="car-type" type="text" /><br />
+            <label>初始里程数</label><input class="addCarBox-item" id="addCarBox-carKM" name="car-KM" type="text" /><br />
+            <label>初始可用</label><input class="addCarBox-item" id="addCarBox-judgeUse" name="judge-use" type="text" placeholder="T"/><br />
+            <label>购买时间</label><input class="addCarBox-item" id="addCarBox-buyTime" name="buy-time" type="text" /><br />
+            <input class="addCarBox-button" id="addCarBox-submitButton" type="submit" value="确定"/>
+            <input class="addCarBox-button" id="addCarBox-cancelButton" type="button" value="取消"/>
         </form>
     </div>
 
+    <!-- 修改设置车辆的弹出窗口 -->
+    <div id="setCarBox" class="pop-ups">
+        <h3 class="pop-ups-title">修改车辆</h3>
+        <form mothod="post">
+            <label>修改车牌号</label><input class="setCarBox-item" id="setCarBox-carNumber" name="car-number" type="text" /><br />
+            <label>修改类型</label><input class="setCarBox-item" id="setCarBox-carType" name="car-type" type="text" /><br />
+            <label>修改里程数</label><input class="setCarBox-item" id="setCarBox-carKM" name="car-KM" type="text" /><br />
+            <label>是否可用</label><input class="setCarBox-item" id="setCarBox-judgeUse" name="judge-use" type="text" /><br />
+            <label>修改购买时间</label><input class="setCarBox-item" id="setCarBox-buyTime" name="buy-time" type="text" /><br />
+            <input class="setCarBox-button" id="setCarBox-submitButton" type="submit" value="确定"/>
+            <input class="setCarBox-button" id="setCarBox-cancelButton" type="button" value="取消"/>
+        </form>
+    </div>
+
+    <!-- 删除车连的弹出窗口 -->
+    <div id="deleteCarBox" class="pop-ups">
+        <h3 class="pop-ups-title">删除车辆</h3>
+        <div>此操作将不可逆</div>
+        <div>确定删除车辆吗？</div>
+        <button class="deleteCarBox-button" id="deleteCarBox-submitButton" type="submit">确定</button>
+        <button class="deleteCarBox-button" id="deleteCarBox-cancelButton" type="button">取消</button>
+    </div>
+
+    <!-- 删除运单的弹出窗口 -->
+    <div id="deleteOrderBox" class="pop-ups">
+        <h3 class="pop-ups-title">删除运单</h3>
+        <div>此操作将不可逆</div>
+        <div>确定删除运单吗？</div>
+        <button class="deleteOrderBox-button" id="deleteOrderBox-submitButton" type="submit">确定</button>
+        <button class="deleteOrderBox-button" id="deleteOrderBox-cancelButton" type="button">取消</button>
+    </div>
+
     <script src="../js/car_1.js"></script>
+    <script src="../js/data.js"></script>
 </body>
 
 </html>

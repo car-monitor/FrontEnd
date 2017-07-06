@@ -42,28 +42,43 @@
     margin-bottom: 4px;
 }
 
-#addCarBox {
+#addCarBox, #setCarBox, #deleteCarBox, #deleteOrderBox{
 	color: white;
 	opacity: 1;
 	display: none;
 }
 
-#addCarBox label {
+#addCarBox label, #setCarBox label{
 	padding-left: 40px;
 	display: inline-block;
 	width: 100px;
 }
 
-#addCarBox h3 {
+#addCarBox h3, #setCarBox h3, #deleteCarBox h3, #deleteOrderBox h3{
 	padding-bottom: 10px;
 }
 
-.addCarBox-item {
+.addCarBox-item, .setCarBox-item{
 	width: 200px;
 	margin: 5px;
 }
 
-.addCarBox-button {
+#deleteCarBox > div, #deleteOrderBox > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: 140px;
+}
+
+#deleteCarBox > div:nth-child(2), #deleteOrderBox > div:nth-child(2) {
+    margin-top: 30px;
+}
+
+#deleteCarBox > div:nth-child(3), #deleteOrderBox > div:nth-child(3) {
+    margin-bottom: 30px;
+}
+
+.addCarBox-button, .setCarBox-button, .deleteCarBox-button, .deleteOrderBox-button{
 	width: 80px;
 	margin-left: 80px;
 	margin-top: 15px;
