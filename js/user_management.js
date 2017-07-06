@@ -248,16 +248,24 @@ function goTouser() {
     // 测试
     createUserListPage([{
         user_id: 1,
-        name: '张三',
-        role: '普通用户'
+        name: '张晓斌',
+        role: '司机'
     }, {
         user_id: 2,
-        name: '李四',
-        role: '死机'
+        name: '李宇光',
+        role: '司机'
     }, {
         user_id: 3,
-        name: '王二嘛',
-        role: '管理员'
+        name: '田氏仁',
+        role: '司机'
+    },{
+        user_id: 4,
+        name: '车里梓',
+        role: '司机'
+    },{
+        user_id: 5,
+        name: '时文武',
+        role: '司机'
     }])
 }
 
