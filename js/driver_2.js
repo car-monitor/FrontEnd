@@ -20,19 +20,11 @@ const View = {
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                         <span onclick="Controller.get('loadDriverDetail', {{driver_id}})" style="cursor: pointer">{{name}}</span>
                     </h1>
-                    <div class="driver-item-content">
-                        <div>总里程：</div>
-                        <div>{{mileage}}公里</div>
-                    </div>
-                    <div class="driver-item-content">
-                        <div>运单数量：</div>
-                        <div>{{waybillsum}}</div>
-                    </div>
-                    <div class="driver-item-content">
-                        <div>警告次数：</div>
-                        <div>{{warningsum}}</div>
-                    </div>
-                </div>`
+                </div>`,
+        subitem: `<div class="driver-item-content">
+                      <div>{{label}}：</div>
+                      <div>{{value}}</div>
+                  </div>`
     },
     mainInfo: {
         head: `<div class="driver-main-info">
@@ -68,23 +60,11 @@ const View = {
                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                         运单
                     </h1>
-                    <div class="driver-item-content">
-                        <div>起点：</div>
-                        <div>{{origin}}公里</div>
-                    </div>
-                    <div class="driver-item-content">
-                        <div>终点：</div>
-                        <div>{{terminal}}</div>
-                    </div>
-                    <div class="driver-item-content">
-                        <div>出发时间：</div>
-                        <div>{{starttime}}</div>
-                    </div>
-                    <div class="driver-item-content">
-                        <div>结束时间：</div>
-                        <div>{{endtime}}</div>
-                    </div>
-               </div>`
+               </div>`,
+        subitem: `<div class="driver-item-content">
+                    <div>{{label}}：</div>
+                    <div>{{value}}</div>
+                </div>`
     }
 }
 
@@ -215,8 +195,14 @@ const Controller = (function() {
         let driverList = Model.get('driverList');
         let root = $(utils.getTemplate('driverList.head'));
         driverList.forEach(item => {
-            let template = utils.getTemplate('driverList.item');
-            $(utils.replace(template, item)).appendTo(root.children('#driver-list'));
+            let tmp = utils.getTemplate('driverList.item');
+            tmp = $(utils.replace(tmp, { name: item.name, driver_id: item.driver_id }));
+            let str = '';
+            item.list.forEach(it => {
+                str += utils.replace(utils.getTemplate('driverList.subitem'), it);
+            });
+            $(str).appendTo(tmp);
+            tmp.appendTo(root.children('#driver-list'));
         });
         // 挂载到 DOM 树中
         root.appendTo('.aside');
@@ -237,8 +223,13 @@ const Controller = (function() {
             name: waybills.name
         }));
         waybills.list.forEach(item => {
-            let template = utils.getTemplate('driverDetail.item');
-            $(utils.replace(template, item)).appendTo(root.children('#driver-list'));
+            let tmp = $(utils.getTemplate('driverDetail.item'));
+            let str = '';
+            item.forEach(it => {
+                str += utils.replace(utils.getTemplate('driverDetail.subitem'), it);
+            });
+            $(str).appendTo(tmp);
+            tmp.appendTo(root.children('#driver-list'));
         });
         // 挂载到 DOM 树中
         root.appendTo('.aside');
@@ -268,293 +259,200 @@ $(document).ready(function() {
  * 虚拟数据
  */
 function getData(name, driver_id) {
-    let obj = {};
-    obj['waybills'] = {
-        1: {
-            driver_id: 1,
-            name: '张三',
-            list: [{
-                waybill_id: 1,
-                origin: '广东省广州市越秀区方圆路33号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.01.29 09:30',
-                endtime: '2017.01.30 12:10'
-            }, {
-                waybill_id: 2,
-                origin: '广东省惠州市广德路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.02.29 09:30',
-                endtime: '2017.02.30 12:10'
-            }, {
-                waybill_id: 3,
-                origin: '北京途包录得路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.03.29 09:30',
-                endtime: '2017.03.30 12:10'
-            }, {
-                waybill_id: 4,
-                origin: '上海市外滩23号',
-                terminal: '广东省广州市越秀区方圆路33号',
-                starttime: '2017.01.29 09:30',
-                endtime: '2017.01.30 12:10'
-            }]
-        },
-        2: {
-            driver_id: 2,
-            name: '李四',
-            list: [{
-                waybill_id: 1,
-                origin: '广东省广州市越秀区方圆路33号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.01.29 09:30',
-                endtime: '2017.01.30 12:10'
-            }, {
-                waybill_id: 2,
-                origin: '广东省惠州市广德路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.02.29 09:30',
-                endtime: '2017.02.30 12:10'
-            }, {
-                waybill_id: 3,
-                origin: '北京途包录得路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.03.29 09:30',
-                endtime: '2017.03.30 12:10'
-            }, {
-                waybill_id: 4,
-                origin: '上海市外滩23号',
-                terminal: '广东省广州市越秀区方圆路33号',
-                starttime: '2017.01.29 09:30',
-                endtime: '2017.01.30 12:10'
-            }, {
-                waybill_id: 5,
-                origin: '广东省深圳市',
-                terminal: '广东省广州',
-                starttime: '2017.11.29 09:30',
-                endtime: '2017.11.30 12:10'
-            }]
-        },
-        3: {
-            driver_id: 3,
-            name: '王二麻',
-            list: [{
-                waybill_id: 1,
-                origin: '广东省广州市越秀区方圆路33号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.01.29 09:30',
-                endtime: '2017.01.30 12:10'
-            }, {
-                waybill_id: 2,
-                origin: '广东省惠州市广德路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.02.29 09:30',
-                endtime: '2017.02.30 12:10'
-            }, {
-                waybill_id: 3,
-                origin: '北京途包录得路20号',
-                terminal: '广东省广州市白云区罗德路29号',
-                starttime: '2017.03.29 09:30',
-                endtime: '2017.03.30 12:10'
-            }]
+    let data;
+    switch (name) {
+        case 'waybills':
+            data = getWaybills(driver_id);
+            break;
+        case 'mainInfo':
+            data = getMainInfo(driver_id);
+            break;
+        case 'driverList':
+            data = getDriverList(driver_id);
+            break;
+    }
+    return data;
+}
+
+function getWaybills(driver_id) {
+    let tmp = [];
+    dataOrder.forEach(order => {
+        if (order.driverId == driver_id) {
+            tmp.push(order);
         }
+    });
+    let result = {
+        driver_id,
+        list: []
     };
-    obj['mainInfo'] = {
-        1: {
-            car: {
-                icon: 'fa-car',
-                title: '车辆信息',
-                list: [{
-                    label: '牌照',
-                    value: '粤A-AAA00'
-                }, {
-                    label: '油量',
-                    value: 100
-                }, {
-                    label: '速度',
-                    value: 100
-                }, {
-                    label: '平均速度',
-                    value: 100
-                }, {
-                    label: '总里程',
-                    value: 100
-                }]
-            },
-            driver: {
+    dataDrivers.forEach(driver => {
+        if (driver.id == driver_id) {
+            result.name = driver.username;
+        }
+    });
+    tmp.forEach(order => {
+        result.list.push([{
+            label: '收货地址',
+            value: order.addresseeAddress
+        }, {
+            label: '发货地址',
+            value: order.addressorAddress
+        }, {
+            label: '发货时间',
+            value: order.startTime
+        }, {
+            label: '收货时间',
+            value: order.endTime
+        }, {
+            label: '收货人',
+            value: order.addressorName
+        }, {
+            label: '收货人电话',
+            value: order.addressorPhone
+        }, {
+            label: '发货人',
+            value: order.addresseeName
+        }, {
+            label: '发货人电话',
+            value: order.addresseePhone
+        }])
+    });
+    return result;
+}
+
+function getMainInfo(driver_id) {
+    let result = {
+        car: null,
+        driver: null,
+        waybill: null
+    };
+    dataDrivers.forEach(driver => {
+        if (driver.id == driver_id) {
+            result.driver = {
                 icon: 'fa-user-circle',
                 title: '驾驶员信息',
                 list: [{
                     label: '姓名',
-                    value: '张三'
+                    value: driver.username
                 }, {
-                    label: '总里程',
-                    value: 100
+                    label: '性别',
+                    value: driver.sex && '男' || '女'
                 }, {
-                    label: '警告次数',
-                    value: 100
+                    label: '身份证',
+                    value: driver.identify
                 }, {
-                    label: '信用等级',
-                    value: 8
-                }]
-            },
-            waybill: {
-                icon: 'fa-info-circle',
-                title: '运单信息',
-                list: [{
-                    label: '起点',
-                    value: '北京途包录得路20号'
+                    label: '电话',
+                    value: driver.phone
                 }, {
-                    label: '终点',
-                    value: '广东省广州市白云区罗德路29号'
+                    label: '住址',
+                    value: driver.address
                 }, {
-                    label: '里程',
-                    value: 100
+                    label: '编号',
+                    value: driver.jobNo
                 }, {
-                    label: '出发时间',
-                    value: '2017.03.29 09:30'
+                    label: '类型',
+                    value: driver.driverType
                 }, {
-                    label: '预定送达时间',
-                    value: '2017.03.30 12:10'
-                }]
-            }
-        },
-        2: {
-            car: {
-                icon: 'fa-car',
-                title: '车辆信息',
-                list: [{
-                    label: '牌照',
-                    value: '粤B-BBB00'
+                    label: '所属部门',
+                    value: driver.appartmentID
                 }, {
-                    label: '油量',
-                    value: 200
+                    label: '所属公司',
+                    value: driver.companyID
                 }, {
-                    label: '速度',
-                    value: 180
-                }, {
-                    label: '平均速度',
-                    value: 190
-                }, {
-                    label: '总里程',
-                    value: 10
-                }]
-            },
-            driver: {
-                icon: 'fa-user-circle',
-                title: '驾驶员信息',
-                list: [{
-                    label: '姓名',
-                    value: '李四'
-                }, {
-                    label: '总里程',
-                    value: 1000
-                }, {
-                    label: '警告次数',
-                    value: 80
-                }, {
-                    label: '信用等级',
-                    value: 10
-                }]
-            },
-            waybill: {
-                icon: 'fa-info-circle',
-                title: '运单信息',
-                list: [{
-                    label: '起点',
-                    value: '广东省广州市越秀区方圆路33号'
-                }, {
-                    label: '终点',
-                    value: '广东省广州市白云区罗德路29号'
-                }, {
-                    label: '里程',
-                    value: 100
-                }, {
-                    label: '出发时间',
-                    value: '2017.01.29 09:30'
-                }, {
-                    label: '预定送达时间',
-                    value: '2017.01.30 12:10'
-                }]
-            }
-        },
-        3: {
-            car: {
-                icon: 'fa-car',
-                title: '车辆信息',
-                list: [{
-                    label: '牌照',
-                    value: '粤C-CCC00'
-                }, {
-                    label: '油量',
-                    value: 50
-                }, {
-                    label: '速度',
-                    value: 80
-                }, {
-                    label: '平均速度',
-                    value: 390
-                }, {
-                    label: '总里程',
-                    value: 1000
-                }]
-            },
-            driver: {
-                icon: 'fa-user-circle',
-                title: '驾驶员信息',
-                list: [{
-                    label: '姓名',
-                    value: '王二麻'
-                }, {
-                    label: '总里程',
-                    value: 1000
-                }, {
-                    label: '警告次数',
-                    value: 10
-                }, {
-                    label: '信用等级',
-                    value: 10
-                }]
-            },
-            waybill: {
-                icon: 'fa-info-circle',
-                title: '运单信息',
-                list: [{
-                    label: '起点',
-                    value: '广东省惠州市广德路20号'
-                }, {
-                    label: '终点',
-                    value: '广东省广州市白云区罗德路29号'
-                }, {
-                    label: '里程',
-                    value: 900
-                }, {
-                    label: '出发时间',
-                    value: '2017.03.29 09:30'
-                }, {
-                    label: '预定送达时间',
-                    value: '2017.01.30 12:10'
+                    label: '是否已确认身份',
+                    value: driver.authority && '是' || '否'
                 }]
             }
         }
-    };
-    obj['driverList'] = [{
-        driver_id: 1,
-        name: '张三',
-        mileage: 100,
-        waybillsum: 5,
-        warningsum: 100
-    }, {
-        driver_id: 2,
-        name: '李四',
-        mileage: 100,
-        waybillsum: 5,
-        warningsum: 100
-    }, {
-        driver_id: 3,
-        name: '王二嘛',
-        mileage: 100,
-        waybillsum: 5,
-        warningsum: 100
-    }];
-    return driver_id && obj[name][driver_id] || obj[name];
+    });
+    dataOrder.forEach(order => {
+        if (order.driverId == driver_id) {
+            result.waybill = {
+                icon: 'fa-info-circle',
+                title: '运单信息',
+                carId: order.carID,
+                list: [{
+                    label: '收货地址',
+                    value: order.addresseeAddress
+                }, {
+                    label: '发货地址',
+                    value: order.addressorAddress
+                }, {
+                    label: '发货时间',
+                    value: order.startTime
+                }, {
+                    label: '收货时间',
+                    value: order.endTime
+                }, {
+                    label: '收货人',
+                    value: order.addressorName
+                }, {
+                    label: '收货人电话',
+                    value: order.addressorPhone
+                }, {
+                    label: '发货人',
+                    value: order.addresseeName
+                }, {
+                    label: '发货人电话',
+                    value: order.addresseePhone
+                }]
+            };
+        }
+    });
+    dataCars.forEach(car => {
+        if (car.id == result.waybill.carId) {
+            result.car = {
+                icon: 'fa-car',
+                title: '车辆信息',
+                carId: car.id,
+                list: [{
+                    label: '牌照',
+                    value: car.carPlate
+                }, {
+                    label: '品牌',
+                    value: car.carType
+                }, {
+                    label: '容量',
+                    value: car.cargoCapacity + '吨'
+                }, {
+                    label: '引擎编号',
+                    value: car.engineNo
+                }, {
+                    label: '购买时间',
+                    value: car.buyTime
+                }, {
+                    label: '载客数',
+                    value: car.passengerNum
+                }, {
+                    label: '持有者',
+                    value: car.owner
+                }]
+            }
+        }
+    });
+    return result;
+}
+
+function getDriverList() {
+    let drivers = [];
+    dataDrivers.forEach(item => {
+        drivers.push({
+            driver_id: item.id,
+            name: item.username,
+            list: [{
+                label: '电话',
+                value: item.phone
+            }, {
+                label: '编号',
+                value: item.jobNo
+            }, {
+                label: '身份证',
+                value: item.identify
+            }, {
+                label: '是否已确认身份',
+                value: item.authority && '是' || '否'
+            }]
+        });
+    });
+    return drivers;
 }
