@@ -1,0 +1,183 @@
+<!-- 管理员用户版本 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>driver manager list</title>
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/driver.css">
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&amp;key=YOUR_KEY&amp;libraries=drawing,geometry,autocomplete,convertor"></script>
+    <script src="../jQuery/jquery-3.1.0.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- a标签href属性请填实时的页面 -->
+        <h1 class="fl logo"><a href="/realtime.html">基于云平台的车辆监控系统</a></h1>
+        <ul class="fr">
+            <li class="fl"><a href="/real_time.html">实时</a></li>
+            <li class="fl"><a href="/car.html">车辆</a></li>
+            <li class="fl hover"><a href="/driver.html">驾驶员</a></li>
+            <li class="fl"><a href="/waybill.html">运单</a></li>
+            <li class="fl"><a href="/user_management.html">用户管理</a></li>
+            <li class="fl"><a href="/history_search.html">历史检索</a></li>
+            <!-- 如果已经登录，可将下行代码换成其下一行代码，记住填id -->
+            <li class="fl"><a href="/login.html">登录</a></li>
+            <!-- <li class="fl"><a href="/user?id=">用户名</a></li> -->
+        </ul>
+    </div>
+    <div class="container">
+        <div class="aside">
+        </div>
+        <div class="main-body">
+            <div id="map" class="map"></div>
+            <ul class="main-info">
+                <li class="fl"></li>
+                <li class="fl"></li>
+                <li class="fl"></li>
+                <li class="fl"></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 添加驾驶员信息弹框 -->
+    <div id="driver-pop-up" class="add-driver">
+        <div id="mask" class="mask"></div>
+        <div id="popUps" class="pop-ups">
+            <h4 class="pop-ups-title">添加驾驶员</h4>
+            <div class="driver-pop-ups-content">
+                <div>
+                    <div class="driver-pop-ups-label">姓名</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-name" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">性别</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-sex" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">所属公司</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-company" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">所属部门</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-appartment" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">身份证号</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-identify" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">电话</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-phone" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">编号</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-jobNo" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">驾驶员类型</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-driverType" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">住址</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-address" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">是否已确定身份</div>
+                    <div class="driver-pop-ups-input">
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="driver-pop-ups-btns">
+                    <button onclick="Controller.get('removePopup', '.add-driver')">确定</button>
+                    <button onclick="Controller.get('removePopup', '.add-driver')">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 修改驾驶员 -->
+    <div id="driver-pop-up" class="modify-driver">
+        <div id="mask" class="mask"></div>
+        <div id="popUps" class="pop-ups">
+            <h4 class="pop-ups-title">修改驾驶员</h4>
+            <div class="driver-pop-ups-content">
+                <div>
+                    <div class="driver-pop-ups-label">姓名</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-name" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">性别</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-sex" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">所属公司</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-company" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">所属部门</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-appartment" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">身份证号</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-identify" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">电话</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-phone" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">编号</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-jobNo" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">驾驶员类型</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-driverType" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">住址</div>
+                    <div class="driver-pop-ups-input"><input id="driver-pop-ups-address" /></div>
+                </div>
+                <div>
+                    <div class="driver-pop-ups-label">是否已确定身份</div>
+                    <div class="driver-pop-ups-input">
+                        <select>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="driver-pop-ups-btns">
+                    <button onclick="Controller.get('removePopup', '.modify-driver')">确定</button>
+                    <button onclick="Controller.get('removePopup', '.modify-driver')">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 删除运单 -->
+    <div id="driver-pop-up" class="delete-waybill">
+        <div id="mask" class="mask"></div>
+        <div id="popUps" class="pop-ups">
+            <h4 class="pop-ups-title">删除运单</h4>
+            <div class="driver-pop-ups-content">
+                <p style="text-align: center">
+                    此操作将不可逆，确定删除订单？
+                </p>
+                <div class="driver-pop-ups-btns">
+                    <button onclick="Controller.get('removePopup', '.delete-waybill')">确定</button>
+                    <button onclick="Controller.get('removePopup', '.delete-waybill')">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/frame.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/driver_super.js"></script>
+</body>
+
+</html>
