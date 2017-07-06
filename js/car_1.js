@@ -172,15 +172,57 @@ $(function ($) {
 		$(".addCarBox-item").val();
 	});
 
-	//点击取消
-	$("#cancelButton").on("click", function() {
+	//取消添加车辆
+	$("#addCarBox-cancelButton").on("click", function() {
 		//添加车辆窗口弹出
 		$("#addCarBox").fadeOut("fast");
 		$("#mask").css({ display: 'none' });
 		$("#mask").remove();
 	})
 
-	$("#submitButton").on("click", function(e) {
+	//添加车辆提交
+	$("#addCarBox-submitButton").on("click", function(e) {
+		e.preventDefault();
+	});
+
+	//点击添加车辆设置按钮 弹出添加车辆窗口
+	$(".car-item .fa-cog").on("click", function() {
+		//添加mask背景
+		$("body").append("<div id='mask'></div>");
+		$("#mask").addClass("mask").fadeIn("slow");
+		$("#setCarBox").fadeIn("slow");
+		$(".setCarBox-item").val();
+	});
+
+	//取消修改车辆
+	$("#setCarBox-cancelButton").on("click", function() {
+		$("#setCarBox").fadeOut("fast");
+		$("#mask").css({ display: 'none' });
+		$("#mask").remove();
+	})
+
+	//修改车辆提交
+	$("#setCarBox-submitButton").on("click", function(e) {
+		e.preventDefault();
+	});
+
+	//点击删除车辆按钮 弹出删除车辆窗口
+	$(".car-item .fa-trash-o").on("click", function() {
+		//添加mask背景
+		$("body").append("<div id='mask'></div>");
+		$("#mask").addClass("mask").fadeIn("slow");
+		$("#deleteCarBox").fadeIn("slow");
+	});
+
+	//取消删除车辆
+	$("#deleteCarBox-cancelButton").on("click", function() {
+		$("#deleteCarBox").fadeOut("fast");
+		$("#mask").css({ display: 'none' });
+		$("#mask").remove();
+	})
+
+	//确定删除车辆
+	$("#deleteCarBox-submitButton").on("click", function(e) {
 		e.preventDefault();
 	});
 });
