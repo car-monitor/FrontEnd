@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>运单页面-普通用户</title>
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/public.css">
+    <link rel="stylesheet" href="../css/list.css">
+
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&amp;key=YOUR_KEY&amp;libraries=drawing,geometry,autocomplete,convertor"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- a标签href属性请填实时的页面 -->
+        <h1 class="fl logo"><a href="/realtime.html">基于云平台的车辆监控系统</a></h1>
+        <ul class="fr">
+            <li class="fl"><a href="/real_time.html">实时</a></li>
+            <li class="fl"><a href="/car.html">车辆</a></li>
+            <li class="fl"><a href="/driver.html">驾驶员</a></li>
+            <li class="fl hover"><div onclick="func()">运单</div></li>
+            <!-- <li class="fl"><a href="/user_management.html">用户管理</a></li> -->
+            <li class="fl"><a href="/history_search.html">历史检索</a></li>
+            <!-- 如果已经登录，可将下行代码换成其下一行代码，记住填id -->
+            <!-- <li class="fl"><a href="/login.html">登录</a></li> -->
+            <li class="fl"><a href="/user?id=">用户名</a></li>
+        </ul>
+    </div>
+    <div class="container">
+    	<!-- 右侧运单 -->
+        <div class="aside">
+        	<div class="list-side">
+				<div class="list-side-title">
+					<span>运单详情</span>
+					<!-- <a style="float: right"><i class="fa fa-plus"></i></a> -->
+				</div>
+				<!-- 分隔符 -->
+				
+				<!-- 运单样式实例 -->
+        		<div>
+        			<ul>
+        				<li><div class="list-side-bar"></div></li>
+        				<li><i class="fa fa-exclamation-circle"></i><span class="list-side-title" onclick="func()">运单</span></li>
+        				<li>
+        					<div class="list-side-content">
+        						<div>起点：</div>
+        						<div>终点：</div>
+        						<div>出发时间：</div>
+        						<div>到达时间：</div>
+        					</div>
+        				</li>
+        			</ul>
+        		</div>
+        		<div>
+        			<ul>
+        				<li><div class="list-side-bar"></div></li>
+        				<li><i class="fa fa-exclamation-circle"></i><span class="list-side-title">运单</span></li>
+        				<li>
+        					<div class="list-side-content">
+        						<div>起点：</div>
+        						<div>终点：</div>
+        						<div>出发时间：</div>
+        						<div>到达时间：</div>
+        					</div>
+        				</li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+        <div class="main-body">
+            <div id="map" class="map"></div>
+            <ul class="main-info">
+                <li class="fl" ></li>
+                <li class="fl"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="../javascript/jquery-3.1.0.js"></script>
+<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&amp;key=YOUR_KEY&amp;libraries=drawing,geometry,autocomplete,convertor">
+</script>
+<script src="../javascript/list-ordinary.js"></script>
+<script src="../javascript/list-data.js"></script>
+</html> 
