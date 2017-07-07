@@ -30,6 +30,25 @@ const CARTEMPLATE = {
                     </div>
                 </div>`
     },
+    mainInfo: {
+        head: `<div class="car-main-info">
+                <div class="car-main-info-title">
+                    <i class="fa {{icon}}" aria-hidden="true"></i>
+                    {{title}}
+                </div>
+                <div class="car-main-info-body">
+                    
+                </div>
+            </div>`,
+        item: `<div class="car-main-info-body-item">
+                  <div class="car-main-info-body-item-label">
+                    {{label}}
+                  </div>
+                  <div class="car-main-info-body-item-value">
+                    {{value}}
+                  </div>
+              </div>`
+    },
     carDetail: {
         head: `<div id="car">
                     <h1 id="car-title" class="car-border">
@@ -148,6 +167,56 @@ function createCarListPage(list) {
 
 
 /**
+ * 生成‘车辆详细信息’页面
+ * @param {String} carPlate  车牌号
+ * @param {Array}  list      该车的相关运单列表
+ *   格式说明：[{
+ *      waybill_id:,
+ *      origin:,
+ *      terminal:,
+ *      starttime:,
+ *      endtime:
+ *   }]
+ */
+function createCarDetailPage(carId, carPlate, list) {
+    let root = $(utils.replace(utils.getTemplate('carDetail.head'), {carPlate}));
+    list.forEach(item => {
+        let template = utils.getTemplate('carDetail.item');
+        $(utils.replace(template, item)).appendTo(root.children('#car-list'));
+    });
+    utils.load(root);
+    //load后给元素添加事件
+}
+
+//加载数据到车辆main-info栏
+function createCarMainInfo(item) {
+    //清空原来的数据
+    $(".main-info li:first-child").empty();
+    let root = utils.getTemplate('mainInfo.head');
+    root = $(utils.replace(root, { icon: item.icon, title: item.title }));
+    item.list.forEach(it => {
+        let tmp = utils.getTemplate('mainInfo.item');
+        $(utils.replace(tmp, it)).appendTo(root.children('.car-main-info-body'));
+    });
+    root.appendTo('.main-info li:first-child');
+}
+
+//加载数据到运单main-info栏
+function createOrderMainInfo(item) {
+    //清空原来的数据
+    $(".main-info li:nth-child(2)").empty();
+    let root = utils.getTemplate('mainInfo.head');
+    root = $(utils.replace(root, { icon: item.icon, title: item.title }));
+    item.list.forEach(it => {
+        let tmp = utils.getTemplate('mainInfo.item');
+        $(utils.replace(tmp, it)).appendTo(root.children('.car-main-info-body'));
+    });
+    root.appendTo('.main-info li:nth-child(2)');
+}
+
+
+
+/**
  * ‘车辆列表’页面初始化函数
  */
 function goToCar() {
@@ -193,45 +262,91 @@ function goToCar() {
 }
 
 /**
- * 生成‘车辆详细信息’页面
- * @param {String} carPlate  车牌号
- * @param {Array}  list      该车的相关运单列表
- *   格式说明：[{
- *      waybill_id:,
- *      origin:,
- *      terminal:,
- *      starttime:,
- *      endtime:
- *   }]
- */
-function createCarDetailPage(carId, carPlate, list) {
-    let root = $(utils.replace(utils.getTemplate('carDetail.head'), {carPlate}));
-    list.forEach(item => {
-        let template = utils.getTemplate('carDetail.item');
-        $(utils.replace(template, item)).appendTo(root.children('#car-list'));
-    });
-    utils.load(root);
-    //load后给元素添加事件
-    setCarFunOn();
-    deleteCarFunOn();
-    deleteOrderFunOn();
-}
-
-/**
  * ‘车辆详情页’页面初始化函数
  */
 function goToCarDetail(carId, carPlate) {
     utils.clear();
     //从datajs获取假数据
-    createCarDetailPage(carId, carPlate,
-    	[{
-            waybill_id: 1,
-            origin: dataOrder[0].addressorAddress,
-            terminal: dataOrder[0].addresseeAddress,
-            starttime: dataOrder[0].startTime,
-            endtime: dataOrder[0].endTime
-        }]
-    );
+    var orderId_ = findOrderIdByCarId(carId);
+    var orderList = new Array;
+    for (var i = 0; i < orderId_.length; ++i) {
+        var temp = {
+            origin: dataOrder[orderId_[i]-1].addressorAddress,
+            terminal: dataOrder[orderId_[i]-1].addresseeAddress,
+            starttime: dataOrder[orderId_[i]-1].startTime,
+            endtime: dataOrder[orderId_[i]-1].endTime          
+        }
+        orderList.push(temp);
+    }
+    createCarDetailPage(carId, carPlate,orderList);
+}
+
+//显示车辆信息栏信息
+function goToCarMainInfo(carId) {
+    //search carID infomation
+    //$.get()
+    //下面从datajs获取假数据,非ajax后台
+    item = {
+                icon: 'fa-user-circle',
+                title: '车辆信息',
+                list: [{
+                    label: '车牌号',
+                    value: dataCars[carId-1].carPlate
+                }, {
+                    label: '车辆类型',
+                    value: dataCars[carId-1].carType
+                }, {
+                    label: '购买时间',
+                    value: dataCars[carId-1].buyTime
+                }, {
+                    label: '容量',
+                    value: dataCars[carId-1].cargoCapacity
+                }, {
+                    label: '引擎',
+                    value: dataCars[carId-1].engineNo
+                }, {
+                    label: '所有者',
+                    value: dataCars[carId-1].owner
+                }, {
+                    label: '载客量',
+                    value: dataCars[carId-1].passengerNum
+                }]
+            }
+    createCarMainInfo(item);
+}
+
+//显示运单信息栏信息
+function goToOrderMainInfo(orderId) {
+    item = {
+                icon: 'fa-info-circle',
+                title: '运单信息',
+                list: [{
+                    label: '收货地址',
+                    value: dataOrder[orderId-1].addresseeAddress
+                }, {
+                    label: '发货地址',
+                    value: dataOrder[orderId-1].addressorAddress
+                }, {
+                    label: '发货时间',
+                    value: dataOrder[orderId-1].startTime
+                }, {
+                    label: '收货时间',
+                    value: dataOrder[orderId-1].endTime
+                }, {
+                    label: '收货人',
+                    value: dataOrder[orderId-1].addressorName
+                }, {
+                    label: '收货人电话',
+                    value: dataOrder[orderId-1].addressorPhone
+                }, {
+                    label: '发货人',
+                    value: dataOrder[orderId-1].addresseeName
+                }, {
+                    label: '发货人电话',
+                    value: dataOrder[orderId-1].addresseePhone
+                }]
+            }
+    createOrderMainInfo(item);
 }
 
 //给设置修改车辆按钮添加监听事件
@@ -329,20 +444,53 @@ function deleteOrderFunOn() {
 	});
 }
 
+//车牌号码与ID匹配
+function findCarIdByCarPlate(CarPlate) {
+    for (var i in dataCars) {
+        if (dataCars[i].carPlate == CarPlate) return dataCars[i].id;
+    }
+}
+
+function findOrderIdByCarId(CarID) {
+    var orderIdArray = new Array;
+    for (var i in dataOrder) {
+        if (dataOrder[i].carID == CarID) orderIdArray.push(dataOrder[i].id);
+    }
+    return orderIdArray;
+}
+
 $(function ($) {
+	createMap();
 	goToCar();
+
+    //车辆初始页面的添加车辆，设置车辆，删除车辆事件
 	addCarFunOn();
 	setCarFunOn();
 	deleteCarFunOn();
+
+    //初始化页面的时候显示第一辆车
+    goToCarMainInfo(1);
+    //初始页面的时候显示第一辆车第一份运单
+    var temp = findOrderIdByCarId(1);
+    goToOrderMainInfo(temp[0]);
 
 	//点击车辆 显示车辆详情
 	$(".car-item-title span").on("click", function() {
 		var temp_carPlate = $(this).text();
 
 		//通过temp_carPlate车辆号查找id
-		var carId_ = 1;
+		var carId_ = findCarIdByCarPlate(temp_carPlate);
+        var orderId_ = findOrderIdByCarId(carId_);
 		//getCarIdByCarPlate(CarPlate);
 
 		goToCarDetail(carId_, temp_carPlate);
+
+        //渲染车辆详情后添加设置车辆，删除车辆，删除运单时间
+        setCarFunOn();
+        deleteCarFunOn();
+        deleteOrderFunOn();
+
+        goToCarMainInfo(carId_);
+        goToOrderMainInfo(orderId_[0]);
 	});
 });

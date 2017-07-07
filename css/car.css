@@ -86,3 +86,47 @@
 	cursor: pointer;
 	background-color: white;
 }
+
+.car-main-info {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-main-info-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.car-main-info-body {
+    flex: 1;
+    overflow-y: auto
+}
+
+.car-main-info-body-item {
+    margin-bottom: 5px;
+}
+
+.car-main-info-body-item>div {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.car-main-info-body-item-label {
+    width: 33%;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+
+/*修改Public样式，主信息栏变为两栏*/
+.main-info li {
+    height: 100%;
+}
+
+.main-info li:first-child {
+    border-bottom: 0px solid #CCC;
+}
