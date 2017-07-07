@@ -340,8 +340,8 @@ function getWaybills(driver_id) {
 function getMainInfo(driver_id) {
     let result = {
         car: null,
-        driver: null,
-        waybill: null
+        driver: null
+            // waybill: null
     };
     dataDrivers.forEach(driver => {
         if (driver.id == driver_id) {
@@ -382,42 +382,44 @@ function getMainInfo(driver_id) {
             }
         }
     });
+    let carId;
     dataOrder.forEach(order => {
         if (order.driverId == driver_id) {
-            result.waybill = {
-                icon: 'fa-info-circle',
-                title: '运单信息',
-                carId: order.carID,
-                list: [{
-                    label: '收货地址',
-                    value: order.addresseeAddress
-                }, {
-                    label: '发货地址',
-                    value: order.addressorAddress
-                }, {
-                    label: '发货时间',
-                    value: order.startTime
-                }, {
-                    label: '收货时间',
-                    value: order.endTime
-                }, {
-                    label: '收货人',
-                    value: order.addressorName
-                }, {
-                    label: '收货人电话',
-                    value: order.addressorPhone
-                }, {
-                    label: '发货人',
-                    value: order.addresseeName
-                }, {
-                    label: '发货人电话',
-                    value: order.addresseePhone
-                }]
-            };
+            carId = order.id;
+            // result.waybill = {
+            //     icon: 'fa-info-circle',
+            //     title: '运单信息',
+            //     carId: order.carID,
+            //     list: [{
+            //         label: '收货地址',
+            //         value: order.addresseeAddress
+            //     }, {
+            //         label: '发货地址',
+            //         value: order.addressorAddress
+            //     }, {
+            //         label: '发货时间',
+            //         value: order.startTime
+            //     }, {
+            //         label: '收货时间',
+            //         value: order.endTime
+            //     }, {
+            //         label: '收货人',
+            //         value: order.addressorName
+            //     }, {
+            //         label: '收货人电话',
+            //         value: order.addressorPhone
+            //     }, {
+            //         label: '发货人',
+            //         value: order.addresseeName
+            //     }, {
+            //         label: '发货人电话',
+            //         value: order.addresseePhone
+            //     }]
+            // };
         }
     });
     dataCars.forEach(car => {
-        if (car.id == result.waybill.carId) {
+        if (car.id == carId) {
             result.car = {
                 icon: 'fa-car',
                 title: '车辆信息',
