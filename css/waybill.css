@@ -1,0 +1,55 @@
+.list-side{
+	color: #FFF;
+	padding: 20px;
+}
+.list-side-title{
+	font-size: 20px;
+	padding: 10px;
+}
+.list-side-content{
+	font-size:	16px;
+	padding:10px;
+}
+.list-side-bar{
+	margin: 10px 0px 10px 0px;
+	background-color: #FFF;
+	height: 1px;
+}
+ul, li{
+	padding:0px;
+	margin: 0px;
+}
+.btn{
+	width: 40%;
+	height: 100%;
+	margin: 0 auto;
+}
+.div{
+	width: 100%;
+	text-align: center;
+}
+
+/*这是运单页面的css*/
+.border{
+	border:1px solid white;
+	margin: 5px;
+}
+.title{
+	padding: 5px;
+	font-size: 20px;
+}
+.box{
+	padding:10px;
+}
+.fa-exclamation-circle{
+	padding: 5px;
+	font-size: 20px;
+}
+.fa-trash{
+	padding: 5px;
+	font-size: 20px;
+	float: right;
+}
+.content{
+	padding: 5px;
+}
