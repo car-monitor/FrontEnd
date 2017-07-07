@@ -1,0 +1,170 @@
+#info {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 8% 8% 0 8%;
+    color: #eff1f2;
+    display: flex;
+    flex-direction: column;
+}
+
+#info h1 {
+    position: relative;
+    font-size: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.info-border {
+    border-bottom: 1px solid #808d9a;
+}
+
+#info-list {
+    width: 100%;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    position: relative;
+}
+
+.info-item {
+    padding: 4px 0;
+}
+
+.info-item-title {}
+
+.info-item-content {
+    display: flex;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 4px;
+}
+
+.info-item-content>div:nth-child(2) {
+    flex: 1;
+}
+
+.info-btn {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.info-btn>button {
+    width: 65%;
+    font-size: 18px;
+}
+
+.info-btn-sure,
+.info-btn-cancel {
+    padding: 5px;
+}
+
+.info-btn-sure {
+    margin-top: 2px;
+}
+
+.info-btn-sure>button,
+.info-btn-cancel>button {
+    width: 50%;
+}
+
+.info-pop-ups-content {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: #fff;
+    font-size: 16px;
+}
+
+.info-pop-ups-content>div:not(.info-pop-ups-btns) {
+    width: 78%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.info-pop-ups-content>div>div {
+    display: inline-block;
+}
+
+.info-pop-ups-label {
+    width: 25%;
+}
+
+.info-pop-ups-input {
+    flex: 1;
+}
+
+.info-pop-ups-input>input {
+    width: 100%;
+}
+
+.info-pop-ups-btns {
+    position: relative;
+    width: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-pop-ups-btns>button {
+    position: relative;
+    width: 40%;
+    margin: 0 5px;
+    font-size: 16px;
+    flex: 1;
+}
+
+#info-pop-up {
+    width: 100%;
+    height: auto;
+}
+
+.info-main-info {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-main-info-title {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.info-main-info-body {
+    flex: 1;
+    overflow-y: auto
+}
+
+.info-main-info-body-item {
+    margin-bottom: 5px;
+}
+
+.info-main-info-body-item>div {
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.info-main-info-body-item-label {
+    width: 33%;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.add-info {
+    display: none;
+}
+
+.show {
+    display: block;
+}
