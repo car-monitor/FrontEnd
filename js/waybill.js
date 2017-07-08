@@ -1,6 +1,8 @@
 window.onload=function(){
         init();
-        ready();
+        for(var i=0; i<5;i++){
+            ready(i+1);
+        }
     }
     function add(){
         alert("添加运单");
@@ -10,7 +12,7 @@ window.onload=function(){
             {center: new qq.maps.LatLng(23.0595162735,113.3946990967),zoom:13});
     }
 
-    function ready(){
+    function ready(i){
         var ele=document.getElementById("listlist");
         ele.setAttribute('class', 'box');
         
@@ -48,7 +50,7 @@ window.onload=function(){
         begin.innerHTML="起点：";
         content.appendChild(begin);
         var Begin=document.createElement("span");
-        Begin.innerHTML="这是出发点";
+        Begin.innerHTML="这是出发点"+i;
         begin.appendChild(Begin);
         var br1=document.createElement("br");
         content.appendChild(br1);
@@ -57,13 +59,13 @@ window.onload=function(){
         end.innerHTML="终点：";
         content.appendChild(end);
         var End=document.createElement("span");
-        End.innerHTML="这是目的地";
+        End.innerHTML="这是目的地"+i;
         end.appendChild(End);
         var br2=document.createElement("br");
         content.appendChild(br2);
 
         var btime=document.createElement("span");
-        btime.innerHTML="出发时间："
+        btime.innerHTML="出发时间：";
         content.appendChild(btime);
         var Btime=document.createElement("span");
         Btime.innerHTML="----/--/--/ --:--"
