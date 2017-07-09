@@ -122,30 +122,6 @@ a {
     font-size: 20px;
 }
 
-.search {
-    width: 30%;
-    height: 100%;
-    text-align: center;
-    line-height: 80px;
-}
-
-.search input,
-.search i {
-    font-size: 16px;
-}
-
-.search input {
-    margin-left: 5px;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 1px solid gray;
-    border-left: 0;
-    padding: 0 5px;
-    color: #FFF;
-    background-color: #2C3E50;
-    outline: none;
-}
-
 .container {
     overflow: auto;
     position: relative;

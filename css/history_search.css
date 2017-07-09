@@ -1,0 +1,63 @@
+.body {
+    margin: 0 auto;
+    width: 600px;
+}
+
+.search {
+    margin: 20px auto 0;
+    width: 90%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.search input,
+.search i {
+    font-size: 20px;
+}
+
+.search i:hover {
+    cursor: pointer;
+}
+
+.search input {
+    margin-left: 5px;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid #000;
+    border-left: 0;
+    padding: 0 5px;
+    width: 80%;
+
+    color: #000;
+    outline: none;
+}
+
+.select {
+    margin: 0 auto;
+    width: 90%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.select label {
+    margin-right: 50px;
+
+    font-size: 20px;
+}
+
+.select input {
+    width: 15px;
+    height: 15px;
+}
+
+.info-container {
+    margin: 0;
+    padding: 0;
+}
+
+.info-container li {
+    border-bottom: 1px solid gray;
+    padding: 8px;
+}
